@@ -3,11 +3,12 @@ from model.text import Render_Text
 from model.twitter import Twitter_Client
 from model.us_treasury import UST
 
+UST_SPOT: str = "UST_Spot"
+Title: str = "How the market moved the Spot U.S Treasury curve today..."
 
-def UST_Spot_Curve() -> None:
+
+def UST_Spot_Curve(title: str = Title) -> None:
     """Tweet todays UST Spot Curve Observation."""
-    UST_Spot: str = "UST_Spot"
-    Title: str = "How the market moved the Spot U.S Treasury curve today..."
 
     # Curve data
     curves: dict = {}
@@ -15,7 +16,7 @@ def UST_Spot_Curve() -> None:
     curves["previous"] = UST().previous_curve()
 
     # Plotting curves
-    Plotting(curves, UST_Spot, Title).pointing_wojak()
+    Plotting(curves, UST_SPOT, title).pointing_wojak()
 
     # Observation
     observation = Render_Text(
